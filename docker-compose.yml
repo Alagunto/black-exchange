@@ -1,0 +1,16 @@
+version: '3'
+services:
+#  voter:
+#    build: voter/
+#    ports:
+#      - 9092:8080
+#    volumes:
+#      - ./voter/:/var/www
+#
+  banking-core:
+    build: banking-core/
+    ports:
+      - 9001:8080
+
+    volumes:
+      - ./banking-core/:/var/www
