@@ -1,16 +1,17 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
-
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return [
+        "version" => "1.0.0",
+        "module" => "exchange-user-api"
+    ];
 });
+
+$router->get('/placed-secrets', "ExchangeController@getPlacedSecrets");
+$router->post('/place-secret', "ExchangeController@place");
+$router->post('/buy-secret', "ExchangeController@buy");
+
+$router->post('/free_coin', "FreeCoinController@receiveFreeCoin");
+
+$router->post("/register", "AccountsController@register");
+$router->get("/balance", "AccountsController@balance");

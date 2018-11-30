@@ -10,4 +10,4 @@ $router->get('/', function () use ($router) {
 $router->post('/api/accounts', "AccountController@accounts");
 $router->post('/api/accounts/create', "AccountController@create");
 $router->post('/api/account/balance', "AccountController@balance");
-$router->post('/api/account/change', "AccountController@add");
+$router->post('/api/account/change', "AccountController@change");

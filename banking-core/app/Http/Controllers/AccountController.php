@@ -36,25 +36,31 @@ class AccountController extends Controller
     }
 
     public function balance() {
-        $this->validate(request(), [
-            "account" => "string|exists:accounts,uuid"
-        ]);
-
         $account = Account::query()->where("uuid", request("account"))->first();
+
+        if(is_null($account)) {
+            return [
+                "status" => "bad",
+                "reason" => "not_found"
+            ];
+        }
 
         return [
             "status" => "ok",
-            "result" => $account->balance
+            "result" => optional($account)->balance ?? 0
         ];
     }
 
-    function change() {
-        $this->validate(request(), [
-            "account" => "string|exists:accounts,uuid",
-        ]);
-
+    public function change() {
         $account = Account::query()->where("uuid", request("account"))->first();
-        $account->balance += floatval(request("addition"));
+
+        if(is_null($account))
+            return [
+                "status" => "bad",
+                "reason" => "not_found"
+            ];
+
+        $account->balance += floatval(request("change"));
         $account->save();
 
         return [
