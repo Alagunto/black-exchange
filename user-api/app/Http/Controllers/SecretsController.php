@@ -22,7 +22,7 @@ class SecretsController extends Controller
 
         $secret = request("secret");
         $description = request("description");
-        $price = min(3.0, request("price"));
+        $price = max(3.0, floatval(request("price")));
 
         Secret::create([
             "secret" => $secret,
