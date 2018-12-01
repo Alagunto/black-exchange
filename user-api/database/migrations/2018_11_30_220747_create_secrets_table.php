@@ -15,9 +15,9 @@ class CreateSecretsTable extends Migration
     {
         Schema::create('secrets', function (Blueprint $table) {
             $table->increments('id');
-            $table->text("secret");
-            $table->string('description');
-            $table->string("owner_account");
+            $table->text("secret")->nullable();
+            $table->string('description')->nullable();
+            $table->string("owner_account")->nullable();
             $table->string("price");
             $table->timestamps();
         });

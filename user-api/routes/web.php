@@ -7,9 +7,9 @@ $router->get('/', function () use ($router) {
     ];
 });
 
-$router->get('/placed-secrets', "ExchangeController@getPlacedSecrets");
-$router->post('/place-secret', "ExchangeController@place");
-$router->post('/buy-secret', "ExchangeController@buy");
+$router->get('/placed_secrets', "SecretsController@getPlacedSecrets");
+$router->post('/place_secret', "SecretsController@placeSecret");
+$router->post('/buy_secret', "SecretsController@buySecret");
 
 $router->post('/free_coin', "FreeCoinController@receiveFreeCoin");
 
