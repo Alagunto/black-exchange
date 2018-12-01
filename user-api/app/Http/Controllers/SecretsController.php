@@ -22,7 +22,7 @@ class SecretsController extends Controller
 
         $secret = request("secret");
         $description = request("description");
-        $price = max(3.0, floatval(request("price")));
+        $price = max(1.0, floatval(request("price")));
 
         Secret::create([
             "secret" => $secret,
@@ -42,6 +42,15 @@ class SecretsController extends Controller
         return [
             "status" => "ok",
             "result" => Secret::query()->orderBy("id", "DESC")->paginate(10)
+        ];
+    }
+
+    public function getMySecrets()
+    {
+        $account = request("account");
+        return [
+            "status" => "ok",
+            "result" => Secret::query()->where("owner_account", $account)->orderBy("id", "DESC")->paginate(10)
         ];
     }
 

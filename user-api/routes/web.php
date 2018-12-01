@@ -8,6 +8,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/placed_secrets', "SecretsController@getPlacedSecrets");
+$router->get('/my_secrets', "SecretsController@getMySecrets");
 $router->post('/place_secret', "SecretsController@placeSecret");
 $router->post('/buy_secret', "SecretsController@buySecret");
 

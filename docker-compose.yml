@@ -4,14 +4,15 @@ services:
     build: user-api/
     ports:
       - 9999:8080
-
-#    volumes:
-#      - ./user-api/:/var/www
+    restart: unless-stopped
+    volumes:
+      - ./user-api:/var/www
 
   banking-core:
     build: banking-core/
     ports:
       - 9000:9000
+    restart: unless-stopped
 
-#    volumes:
-#      - ./banking-core/:/var/www
+    volumes:
+      - ./banking-core:/var/www
