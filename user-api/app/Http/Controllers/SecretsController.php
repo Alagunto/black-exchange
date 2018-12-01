@@ -48,9 +48,22 @@ class SecretsController extends Controller
     public function getMySecrets()
     {
         $account = request("account");
+        $secrets = Secret::query()->where("owner_account", $account)->orderBy("id", "DESC")->get();
+
+        $answer = [];
+
+        foreach($secrets as $secret) {
+            $answer[] = [
+                "description" => $secret->description,
+                "price" => $secret->price,
+                "secret" => $secret->secret,
+                "id" => $secret->id,
+            ];
+        }
+
         return [
             "status" => "ok",
-            "result" => Secret::query()->where("owner_account", $account)->orderBy("id", "DESC")->paginate(10)
+            "result" => $answer
         ];
     }
 

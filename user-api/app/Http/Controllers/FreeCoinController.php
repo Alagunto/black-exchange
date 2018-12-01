@@ -12,14 +12,6 @@ class FreeCoinController extends Controller
         $service = app(BankingService::class);
 
         $account = request("account");
-        $balance = $service->balance($account);
-
-        if($balance === false) {
-            return [
-                "status" => "bad",
-                "reason" => "account_not_found"
-            ];
-        }
 
         $time_delay = request("time_delay");
 
